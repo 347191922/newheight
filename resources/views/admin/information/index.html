@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=emulateIE7" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="__PUBLIC_ADMIN__/css/sapar.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC_ADMIN__/css/common.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC_ADMIN__/css/my_order.css" />
+    <title>资讯列表</title>
+    <style type="text/css">
+        /*表格 溢出隐藏*/
+        table{
+            width:100%;
+            border-collapse: collapse;
+            table-layout:fixed;/* 只有定义了表格的布局算法为fixed，下面td的定义才能起作用。 */
+        }
+        td.body{width:30%;}
+        td{
+            overflow:hidden;        /* 内容超出宽度时隐藏超出部分的内容 */
+            white-space:nowrap;     /* 不换行 */
+            text-overflow:ellipsis; /* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用*/
+        }
+        .body{
+            max-height: 30px;
+
+            overflow: hidden;
+        }
+        tbody tr{
+            width: 100%;
+            height: 31px;
+            border: 1px dotted #c7c7c7;
+        }
+    </style>
+</head>
+<body>
+    <div id="saper-container">
+        <div id="saper-hd"></div>
+        <div id="saper-bd">
+            <div class="subfiled clearfix">
+                <h2>资讯列表</h2>
+                <a href="{:url('information/add')}" style=" margin-right:80px;float:right;font-size: 14px;font-weight: bold;color: black;">添加</a>
+                <a href="{:url('index/index')}" style=" margin-right:20px;float:right;font-size: 14px;font-weight: bold;color: black;">返回首页</a>
+            </div>
+            <div class="subfiled-content">
+                <!--表格开始-->
+                <div class="table">
+                    <!--表格具体内容-->
+                    <div class="table-box">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>编号</th>
+                                <th>资讯标题</th>
+                                <th>资讯分类</th>
+                                <th>资讯来源</th>
+                                <th>关键词</th>
+                                <th>资讯内容</th>
+                                <th>添加时间</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                {volist name="list" id="vo"}
+                                    <tr>
+                                        <td>{$vo.id}</td>
+                                        <td>{$vo.icons_title}</td>
+                                        {if condition="$vo.class_id eq 1"}<td>公司资讯</td>
+                                        {else /} <td>行业资讯</td>
+                                        {/if}
+                                        <td>{$vo.icons_source}</td>
+                                        <td>{$vo.key_word}</td>
+                                        <td class="body">{$vo.icons_body}</td>
+                                        <td>{$vo.create_time}</td>
+                                        <td>
+                                            <a href="{:url('information/update','id='.$vo.id)}" style="float:left;">[修改]</a>
+                                            <a href="{:url('information/del_icons','id='.$vo.id)}" style=" margin-left: 45px;">[删除]</a>
+                                        </td>
+                                    </tr>
+                                {/volist}
+                            </tbody>
+                        </table>
+                    </div>
+                </div><!--表格结束-->
+            </div>
+        </div>
+        <div id="saper-ft"></div>
+    </div>
+</body>
+
+</html>

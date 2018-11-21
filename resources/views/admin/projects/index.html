@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=emulateIE7" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="__PUBLIC_ADMIN__/css/sapar.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC_ADMIN__/css/common.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC_ADMIN__/css/my_order.css" />
+    <script type="text/javascript" src="__PUBLIC_ADMIN__/js/jquery.js"></script>
+    <script type="text/javascript" src="__PUBLIC_ADMIN__/js/sapar.js"></script>
+    <script type="text/javascript" src="__PUBLIC_ADMIN__/js/WdatePicker.js"></script>
+    <title>客户案例</title>
+</head>
+<body>
+<div id="saper-container">
+    <div id="saper-hd"></div>
+    <div id="saper-bd">
+        <div class="subfiled clearfix">
+            <h2>案例列表</h2>
+            <a href="{:url('projects/add')}" style=" margin-right:40px;float:right;font-size: 14px;font-weight: bold;color: black;">添加</a>
+            <a href="{:url('index/index')}" style=" margin-right:20px;float:right;font-size: 14px;font-weight: bold;color: black;">返回首页</a>
+        </div>
+        <div class="subfiled-content">
+            <!--表格开始-->
+            <div class="table">
+                <!--表格具体内容-->
+                <div class="table-box">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>编号</th>
+                            <th>案例标题</th>
+                            <th>案例内容</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {volist name="list" id="vo"}
+                                <tr>
+                                    <td>{$vo.id}</td>
+                                    <td>{$vo.case_title}</td>
+                                    <td>{$vo.case_body}</td>
+                                    <td>
+                                        <a href="{:url('projects/updateProject','id='.$vo.id)}" style="float:left;">[修改]</a>
+                                        <a href="{:url('projects/delInfo','id='.$vo.id)}" style=" margin-left: 45px;">[删除]</a>
+                                    </td>
+                                </tr>
+                            {/volist}
+                        </tbody>
+                    </table>
+                </div>
+            </div><!--表格结束-->
+        </div>
+    </div>
+    <div id="saper-ft"></div>
+</div>
+
+</body>
+
+<script type="text/javascript">
+    $('select').iSelect();
+</script>
+</html>
